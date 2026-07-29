@@ -1,5 +1,6 @@
 from task1_bruteforce import brute_force
 from task2_greedy import greedy
+from task3_dynamic import dynamic
 
 
 def tests():
@@ -45,22 +46,21 @@ def tests():
          "expected": (3, 1, 2, 99)},
     ]
 
-    print("Running Test Cases for Tasks 1 and 2\n")
+    print("Running Test Cases for Tasks 1, 2, and 3\n")
     passed = 0
     for idx, tc in enumerate(test_cases, 1):
         A = tc["A"]
         m = len(A)
         n = len(A[0]) if m > 0 else 0
 
-
         bf = brute_force(A, m, n)
         gr = greedy(A, m, n)
-
+        dy = dynamic(A, m, n)
 
         expected = tc.get("expected")
-        success = (bf == expected or expected is None) and bf == gr
+        success = (bf == expected or expected is None) and bf == gr and bf == dy
         status = "PASS" if success else "FAIL"
-        print(f"{idx:2d}. {tc['name']:30} Brute: {bf} | Greedy: {gr} | {status}")
+        print(f"{idx:2d}. {tc['name']:30} Brute: {bf} | Greedy: {gr} | Dynamic: {dy} | {status}")
         if success:
             passed += 1
 
